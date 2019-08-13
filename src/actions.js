@@ -33,3 +33,11 @@ export const login = (name, password) => dispatch=>{
           })
           .catch(console.error)
 }
+
+export const NEW_USER = 'NEW_USER'
+function newUser(payload){
+    return {
+        type: NEW_USER,
+        payload
+    }
+}
