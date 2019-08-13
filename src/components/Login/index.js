@@ -1,15 +1,30 @@
 import React from 'react'
 import View from './view'
-//import {setUser} from '../actions'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { login } from '../../actions'
 
-class LoginForm extends React.Component {
-    render() {
-        return <View onSubmit={this.onSubmit}/>
-    }
+class LoginFormContainer extends React.Component {
+  state = { name: '', password: '' }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+    this.props.login(this.state.name, this.state.password)
+  }
+
+  onChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  render() {
+      console.log("STATE:", this.state)
+    return <View
+      onSubmit={this.onSubmit}
+      onChange={this.onChange}
+      values={this.state}
+    />
+  }
 }
-const mapDispatchToProps = {
 
-}
-
-export default connect(null, mapDispatchToProps)(LoginForm)
+export default connect(null, { login })(LoginFormContainer)
