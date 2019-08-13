@@ -2,13 +2,15 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 //import {allChannels} from "./actions";
 import {connect} from "react-redux";
-import LoginForm from './components/Login'
+import LoginFormContainer from './components/Login/index'
+import CreateFormContainer from './components/Login/createuser'
 
 class App extends React.Component {
   render(){
     return (
         <main>
-            <Route path='/' exact component={LoginForm}/>
+            <Route path='/' exact component={LoginFormContainer}/>
+            <Route path='/create-user' exact component={CreateFormContainer}/>
         </main>
     );
   }

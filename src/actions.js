@@ -41,3 +41,17 @@ function newUser(payload){
         payload
     }
 }
+
+export const newLogin = (name, password) => dispatch=>{
+    console.log('request' )
+    request
+        .post(`${baseUrl}/user`)
+        .send({ name, password })
+        .then(response => {
+            console.log('NEW LOGIN:', response.body)
+            const action = newUser(response.body)
+      
+            dispatch(action)
+          })
+          .catch(console.error)
+}
