@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import {connect} from "react-redux";
-import LoginFormContainer from './components/Login/index'
 import CreateFormContainer from './components/Login/createuser'
 import GameList from './components/GameList'
 import Game from './components/Game'
@@ -11,6 +10,7 @@ import {allGames} from "./actions";
 class App extends React.Component {
 
     source = new EventSource(`${url}/game`)
+
 
     componentDidMount () {
         this.source.onmessage = (event) => {
@@ -25,7 +25,7 @@ class App extends React.Component {
   render(){
     return (
         <main>
-            <Route path='/' exact component={LoginFormContainer}/>
+            <Route path='/' exact component={GameList}/>
             <Route path='/create-user' exact component={CreateFormContainer}/>
             <Route path='/gamelist' component={GameList}/>
             <Route path='/game/:id' component={Game} />
@@ -41,7 +41,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-	allGames
+  allGames
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

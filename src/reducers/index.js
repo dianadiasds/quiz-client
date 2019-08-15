@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
-import setUser from './login'
+import user from './user'
 import jwt from './jwt'
 import games from './games'
 
 
 export default combineReducers({
-    setUser,
+    user,
     jwt,
     games
 })

@@ -1,14 +1,5 @@
 import * as request from 'superagent'
 
-export const ALL_GAMES = 'ALL_GAMES'
-
-export function allGames (payload) {
-    return {
-        type: ALL_GAMES,
-        payload
-    }
-}
-
 export const SET_USER = 'SET_USER'
 
 export function setUser(payload) {
@@ -64,3 +55,14 @@ export const newLogin = (name, password) => dispatch=>{
           })
           .catch(console.error)
 }
+
+
+export const ALL_GAMES = 'ALL_GAMES'
+
+export function allGames(payload) {
+    return {
+        type: ALL_GAMES,
+        payload
+    }
+}
+
