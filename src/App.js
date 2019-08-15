@@ -2,11 +2,15 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 import {connect} from "react-redux";
 import CreateFormContainer from './components/Login/createuser'
-import GameList from './components/GameList/index'
-import {allGames} from './actions'
+import GameList from './components/GameList'
+import Game from './components/Game'
+import {url} from "./constants";
+import {allGames} from "./actions";
 
 class App extends React.Component {
-  source = new EventSource(`http://localhost:5000/game`)
+
+    source = new EventSource(`${url}/game`)
+
 
     componentDidMount () {
         this.source.onmessage = (event) => {
@@ -17,11 +21,14 @@ class App extends React.Component {
             this.props.allGames(games)
         }
     }
+
   render(){
     return (
         <main>
             <Route path='/' exact component={GameList}/>
             <Route path='/create-user' exact component={CreateFormContainer}/>
+            <Route path='/gamelist' component={GameList}/>
+            <Route path='/game/:id' component={Game} />
         </main>
     );
   }
@@ -35,6 +42,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   allGames
+
 }
-export default connect(mapStateToProps, mapDispatchToProps
-)(App)
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
