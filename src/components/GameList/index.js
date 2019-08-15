@@ -1,25 +1,10 @@
 import React from 'react'
-import { allGames } from '../../actions'
 import { connect } from 'react-redux'
 import LoginFormContainer from '../Login'
-
 import { Link } from 'react-router-dom'
 
 class GameList extends React.Component {
   state={ games: [], showMe: true}
-
-  source = new EventSource('http://localhost:5000/game')
-
-  componentDidMount () {
-    this.source.onmessage = (event) => {
-      const games = JSON.parse(event.data)
-      console.log('EVENT DATA 1:', event.data)
-
-      console.log('GAMES', games)
-
-      this.props.allGames(games)
-    }
-  }
 
   onClick = () => {
     console.log('onClick test!')
@@ -64,10 +49,7 @@ function mapStateToProps (state) {
   }
 }
 
-const mapDispatchToProps = {
-  allGames
-}
 
 export default connect(
-  mapStateToProps, mapDispatchToProps
+  mapStateToProps, null
 )(GameList)

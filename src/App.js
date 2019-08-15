@@ -1,12 +1,22 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
-//import {allChannels} from "./actions";
 import {connect} from "react-redux";
-import LoginFormContainer from './components/Login/index'
 import CreateFormContainer from './components/Login/createuser'
-import GameList from './components/Game/index'
+import GameList from './components/GameList/index'
+import {allGames} from './actions'
 
 class App extends React.Component {
+  source = new EventSource(`http://localhost:5000/game`)
+
+    componentDidMount () {
+        this.source.onmessage = (event) => {
+            const games = JSON.parse(event.data)
+
+            console.log('game did:', games)
+
+            this.props.allGames(games)
+        }
+    }
   render(){
     return (
         <main>
@@ -24,7 +34,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-//  allChannels
+  allGames
 }
 export default connect(mapStateToProps, mapDispatchToProps
 )(App)
