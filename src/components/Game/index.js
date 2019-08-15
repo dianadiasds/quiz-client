@@ -6,7 +6,7 @@ function Question ({ question }) {
 
 	const { answer } = question
 
-	const list = answer.map(answer => <button onSubmit={onsubmit}>{answer}</button>)
+	const list = answer.map(answer => <button>{answer}</button>)
 
 	return <div>
 		Question: {question.question}
