@@ -1,5 +1,14 @@
 import * as request from 'superagent'
 
+export const ALL_GAMES = 'ALL_GAMES'
+
+export function allGames (payload) {
+    return {
+        type: ALL_GAMES,
+        payload
+    }
+}
+
 export const SET_USER = 'SET_USER'
 
 export function setUser(payload) {
@@ -28,7 +37,7 @@ export const login = (name, password) => dispatch=>{
         .then(response => {
             console.log('LOGIN:', response.body)
             const action = loginUser(response.body.jwt)
-      
+
             dispatch(action)
           })
           .catch(console.error)
@@ -50,7 +59,7 @@ export const newLogin = (name, password) => dispatch=>{
         .then(response => {
             console.log('NEW LOGIN:', response.body)
             const action = newUser(response.body)
-      
+
             dispatch(action)
           })
           .catch(console.error)
