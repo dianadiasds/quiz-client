@@ -17,17 +17,17 @@ class LoginFormContainer extends React.Component {
       [event.target.name]: event.target.value
     })
   }
-
+  
   render() {
       console.log("STATE:", this.state)
-    return <div>
+    return <div >
         <h3>Login</h3>
         <View
-      onSubmit={this.onSubmit}
-      onChange={this.onChange}
-      values={this.state}
-    />
-    <p>Don't have an account? Go <Link to='/create-user'>there</Link></p>
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+          values={this.state}
+        />
+        <p>Don't have an account? Go <Link to='/create-user'>there</Link></p>
     </div>
   }
 }
