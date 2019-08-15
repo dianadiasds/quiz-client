@@ -29,6 +29,7 @@ class GameList extends React.Component {
   }
 
   render () {
+    console.log('props test:', this.props)
     const { games, jwt } = this.props
 
     const list = games
@@ -41,10 +42,14 @@ class GameList extends React.Component {
       : null;
 
     console.log('list:', list)
+    console.log('jwt:', jwt)
+
+    const noJwt = jwt === ''
+    console.log('noJwt test:', noJwt)
 
     return <main>
       {
-        jwt === ''
+        noJwt
           ? <LoginFormContainer onClick={this.onClick} />
           : list
       }
@@ -55,7 +60,7 @@ class GameList extends React.Component {
 function mapStateToProps (state) {
   return {
     games: state.games,
-    user: state.user
+    jwt: state.jwt
   }
 }
 
