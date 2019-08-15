@@ -6,6 +6,7 @@ import GameList from './components/GameList'
 import Game from './components/Game'
 import {url} from "./constants";
 import {allGames} from "./actions";
+import GameJoin from './components/GameJoin'
 
 class App extends React.Component {
 
@@ -29,6 +30,7 @@ class App extends React.Component {
             <Route path='/create-user' exact component={CreateFormContainer}/>
             <Route path='/gamelist' component={GameList}/>
             <Route path='/game/:id' component={Game} />
+            <Route path='/join/:gameId' component={GameJoin} />
         </main>
     );
   }

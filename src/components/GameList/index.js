@@ -20,7 +20,7 @@ class GameList extends React.Component {
     const list = games
       ? games.map(game => <Link
         key={game.id}
-        to={`/game/${game.id}`}
+        to={`/join/${game.id}`}
       >
         <div>Game {game.id}</div>
       </Link>)
