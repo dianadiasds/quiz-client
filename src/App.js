@@ -54,9 +54,9 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-      games: state.games
+    games: state.games
   }
-
+}
 
 const mapDispatchToProps = {
   allGames,

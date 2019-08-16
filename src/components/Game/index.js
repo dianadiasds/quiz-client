@@ -9,11 +9,12 @@ class Game extends React.Component {
 
 		onClick = async (event) => {
 			const { id } = this.props.match.params
-
+			const token = this.props.jwt
 			console.log('event.target.value test:', event.target.value)
 
 			await request
 				.put(`${url}/answer/${id}`)
+				.set('authorization', `Bearer ${token}`)
 				.send({
 					jwt: this.props.jwt,
 					answer: event.target.value
