@@ -1,7 +1,7 @@
 import React from 'react'
 import View from './view'
 import {connect} from 'react-redux'
-import {login, setUser} from '../../actions'
+import {login} from '../../actions'
 import {Link} from 'react-router-dom'
 
 class LoginFormContainer extends React.Component {
@@ -38,4 +38,4 @@ class LoginFormContainer extends React.Component {
   }
 }
 
-export default connect(null, {login, setUser})(LoginFormContainer)
+export default connect(null, {login})(LoginFormContainer)

@@ -13,7 +13,7 @@ export default function View(props) {
           onChange={props.onChange}/>
         <label>Password</label>
         <input
-          type='text'
+          type='password'
           value={props.password}
           name='password'
           placeholder='Your password'

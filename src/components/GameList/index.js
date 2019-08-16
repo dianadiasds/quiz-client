@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import LoginFormContainer from '../Login'
 import {Link} from 'react-router-dom'
 import {setUser} from '../../actions'
+import * as request from 'superagent'
+import {url} from '../../constants'
 
 class GameList extends React.Component {
   state = {
@@ -12,9 +14,11 @@ class GameList extends React.Component {
   componentDidMount() {
     setUser()
   }
-  onClick = () => {
-    console.log('onClick test!')
-    this.setState({showMe: false})
+  onClick = async() => {
+    const token = this.props.jwt
+    await request
+      .post(`${url}/game`)
+      .set('authorization', `Bearer ${token}`)
   }
 
   render() {
@@ -22,17 +26,23 @@ class GameList extends React.Component {
     const {games, jwt} = this.props
 
     const list = games
-      ? games.map(game => {
-        return (
-          <Link key={game.id} to={`/join/${game.id}`}>
-            <div>Game {game.id}</div>
-          </Link>
-        );
-      })
+      ? games
+        .reverse()
+        .map(game => {
+          return (
+            <Link key={game.id} to={`/join/${game.id}`}>
+              <div>Game {game.id}</div>
+            </Link>
+          );
+        })
       : null;
 
-    console.log('list:', list)
-    console.log('jwt:', jwt)
+    const listWithButton = (
+      <div>
+        <button onClick={this.onClick}>New Game</button>
+        {list}
+      </div>
+    )
 
     const noJwt = jwt === null;
     console.log('noJwt test:', noJwt)
@@ -40,9 +50,9 @@ class GameList extends React.Component {
     return (
       <main>
         {noJwt
-          ? <LoginFormContainer onClick={this.onClick}/>
-          : list
-        }
+          ? <LoginFormContainer/>
+          : listWithButton
+}
       </main>
     )
   }
