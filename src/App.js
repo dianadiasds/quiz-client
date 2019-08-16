@@ -56,7 +56,7 @@ function mapStateToProps(state) {
   return {
       games: state.games
   }
-
+}
 
 const mapDispatchToProps = {
   allGames,
