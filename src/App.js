@@ -41,7 +41,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <main>
+      <main className='test'>
         <Route path='/' exact component={GameList}/>
         <Route path='/create-user' exact component={CreateFormContainer}/>
         <Route path='/gamelist' component={GameList}/>

@@ -1,6 +1,5 @@
 import * as request from 'superagent'
-
-const baseUrl = 'http://localhost:5000'
+import {url} from './constants'
 
 export const SET_USER = 'SET_USER'
 
@@ -18,7 +17,7 @@ export function loginUser(payload) {
 export const login = (name, password) => dispatch => {
   console.log('request')
   request
-    .post(`${baseUrl}/login`)
+    .post(`${url}/login`)
     .send({name, password})
     .then(response => {
       console.log('LOGIN:', response.body)
@@ -40,7 +39,7 @@ function newUser(payload) {
 export const newLogin = (name, password) => dispatch => {
   console.log('request')
   request
-    .post(`${baseUrl}/user`)
+    .post(`${url}/user`)
     .send({name, password})
     .then(response => {
       console.log('NEW LOGIN:', response.body)

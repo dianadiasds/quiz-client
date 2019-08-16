@@ -40,7 +40,7 @@ class Game extends React.Component {
 			console.log('game test:', game)
 
 			const content = game
-				? <View question={game.question} onClick={this.onClick}/>
+				? <View game={game} onClick={this.onClick}/>
 				: 'Loading...'
 
 			return <div>

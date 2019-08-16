@@ -31,7 +31,7 @@ class LoginFormContainer extends React.Component {
         <h3>Login</h3>
         <View onSubmit={this.onSubmit} onChange={this.onChange} values={this.state}/>
         <p>Don't have an account? Go
-          <Link to='/create-user'>there</Link>
+          <Link to='/create-user'> there</Link>
         </p>
       </div>
     )
