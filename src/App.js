@@ -36,7 +36,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-      setUser: state.setUser
+      games: state.games
   }
 }
 
