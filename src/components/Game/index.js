@@ -1,22 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import * as request from 'superagent'
+import { url } from '../../constants'
+import View from './view'
 
-function Question ({ question }) {
-	console.log('Question question test:', question)
-
-	const { answer } = question
-
-	const list = answer.map(answer => <button>{answer}</button>)
-
-	return <div>
-		Question: {question.question}
-
-		<h5>Answers</h5>
-		{list}
-	</div>
-}
 
 class Game extends React.Component {
+
+		onClick = async (event) => {
+			const { id } = this.props.match.params
+
+			console.log('event.target.value test:', event.target.value)
+
+			await request
+				.put(`${url}/answer/${id}`)
+				.send({
+					jwt: this.props.jwt,
+					answer: event.target.value
+				})
+		}
+
     render () {
 
 			const { id } = this.props.match.params
@@ -36,7 +39,7 @@ class Game extends React.Component {
 			console.log('game test:', game)
 
 			const content = game
-				? <Question question={game.question} />
+				? <View question={game.question} onClick={this.onClick}/>
 				: 'Loading...'
 
 			return <div>
@@ -49,7 +52,8 @@ class Game extends React.Component {
 
 function mapStateToProps (state) {
 	return {
-		games: state.games
+		games: state.games,
+		jwt: state.jwt
 	}
 }
 
